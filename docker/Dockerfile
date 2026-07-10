@@ -15,4 +15,5 @@ RUN python -c "import nltk; nltk.download('punkt'); nltk.download('wordnet')"
 
 EXPOSE 5000
 
-CMD ["waitress-serve", "--port=5000", "backend.app:app"]
+# Explicitly bind to 0.0.0.0
+CMD ["waitress-serve", "--host=0.0.0.0", "--port=5000", "backend.app:app"]

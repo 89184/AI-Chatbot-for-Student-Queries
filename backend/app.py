@@ -142,7 +142,7 @@ def health():
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
-    print(f"\n🚀 Server running at:")
+    print(f"\nServer running at:")
     print(f"   http://localhost:{port}")
     print(f"   http://127.0.0.1:{port}")
     print("=" * 60)

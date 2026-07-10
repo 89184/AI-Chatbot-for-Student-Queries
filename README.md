@@ -4,6 +4,9 @@
 
 An AI-powered college inquiry chatbot that provides quick and accurate responses to frequently asked questions about courses, admissions, fee structure, and facilities.
 
+
+### Working URL: https://ai-chatbot-for-student-queries.onrender.com
+
 ### Key Features
 
 - **NLP-powered**: Uses TensorFlow and NLTK for intent classification

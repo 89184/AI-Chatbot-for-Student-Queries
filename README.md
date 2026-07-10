@@ -30,7 +30,7 @@ An AI-powered college inquiry chatbot that provides quick and accurate responses
 ---
 
 ##  Project Structure
-'''text
+``` text
 AI-Chatbot-for-Student-Queries/
 │
 ├── backend/

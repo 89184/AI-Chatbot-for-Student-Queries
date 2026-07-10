@@ -62,7 +62,8 @@ AI-Chatbot-for-Student-Queries/
 ├── .gitignore # Git ignore file
 ├── requirements.txt # Python dependencies
 ├── LICENSE # MIT License
-└── README.md # This file '''
+└── README.md # This file 
+```
 
 
 

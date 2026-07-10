@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College AI Assistant</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="app">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon">AI</div>
+                    <span class="logo-text">College AI</span>
+                </div>
+                <button class="collapse-btn" id="collapseBtn">◀</button>
+            </div>
+
+            <button class="new-chat" id="newChatBtn">
+                <span>+</span> New Chat
+                <kbd>⌘K</kbd>
+            </button>
+
+            <div class="history">
+                <div class="history-label">Today</div>
+                <div class="history-item active" data-chat="college">
+                    <span>College Q&A</span>
+                </div>
+                <div class="history-item" data-chat="admission">
+                    <span>Admission Query</span>
+                </div>
+                <div class="history-item" data-chat="courses">
+                    <span>Course Details</span>
+                </div>
+                <div class="history-item" data-chat="fees">
+                    <span>Fee Structure</span>
+                </div>
+            </div>
+
+            <div class="sidebar-footer">
+                <div class="user">
+                    <div class="user-avatar">RA</div>
+                    <div class="user-info">
+                        <span class="user-name">Rousan Ali</span>
+                        <span class="user-role">Student</span>
+                    </div>
+                </div>
+                <button class="settings-btn"></button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main">
+            <header class="main-header">
+                <div class="header-left">
+                    <button class="menu-btn" id="menuBtn">☰</button>
+                    <div class="header-title">
+                        <h2>College Assistant</h2>
+                        <span class="status-dot"></span>
+                        <span class="status-text">Online</span>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button class="icon-btn"></button>
+                </div>
+            </header>
+
+            <!-- Messages -->
+            <div class="messages" id="messages">
+                <div class="welcome" id="welcome">
+                    <div class="welcome-icon"></div>
+                    <h1>How can I help you today?</h1>
+                    <p>Ask me anything about courses, admissions, fees, and more.</p>
+                    <div class="quick-actions">
+                        <button class="quick-btn" data-msg="What courses are available?">Courses</button>
+                        <button class="quick-btn" data-msg="Tell me about the admission process">Admission</button>
+                        <button class="quick-btn" data-msg="What is the fee structure?">Fees</button>
+                        <button class="quick-btn" data-msg="What facilities are available?">Facilities</button>
+                        <button class="quick-btn" data-msg="Tell me about placement opportunities">Placements</button>
+                    </div>
+                </div>
+                <div id="chatMessages"></div>
+            </div>
+
+            <!-- Typing -->
+            <div class="typing" id="typing">
+                <span></span><span></span><span></span>
+                <span class="typing-text">AI is thinking...</span>
+            </div>
+
+            <!-- Input -->
+            <div class="input-area">
+                <div class="input-wrapper">
+                    <input type="text" id="userInput" placeholder="Ask me anything..." autofocus />
+                    <button class="send-btn" id="sendBtn">➤</button>
+                </div>
+                <div class="input-footer">
+                    <span>AI may make mistakes. Verify important information.</span>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+
+        // SIDEBAR FUNCTIONALITY
+
+        (function() {
+            console.log(' Initializing Sidebar...');
+            
+            const sidebar = document.getElementById('sidebar');
+            const collapseBtn = document.getElementById('collapseBtn');
+            const menuBtn = document.getElementById('menuBtn');
+            const newChatBtn = document.getElementById('newChatBtn');
+            const historyItems = document.querySelectorAll('.history-item');
+            
+            if (collapseBtn && sidebar) {
+                collapseBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    sidebar.classList.toggle('collapsed');
+                });
+            }
+            
+            if (menuBtn && sidebar) {
+                menuBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    sidebar.classList.toggle('open');
+                });
+            }
+            
+            document.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) {
+                    if (sidebar && !sidebar.contains(e.target) && menuBtn && !menuBtn.contains(e.target)) {
+                        sidebar.classList.remove('open');
+                    }
+                }
+            });
+            
+            historyItems.forEach(function(item) {
+                item.addEventListener('click', function() {
+                    historyItems.forEach(function(h) {
+                        h.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                    
+                    const chatMessages = document.getElementById('chatMessages');
+                    const welcome = document.getElementById('welcome');
+                    if (chatMessages) chatMessages.innerHTML = '';
+                    if (welcome) welcome.style.display = 'flex';
+                    
+                    if (window.innerWidth <= 768 && sidebar) {
+                        sidebar.classList.remove('open');
+                    }
+                });
+            });
+            
+            if (newChatBtn) {
+                newChatBtn.addEventListener('click', function() {
+                    const chatMessages = document.getElementById('chatMessages');
+                    const welcome = document.getElementById('welcome');
+                    if (chatMessages) chatMessages.innerHTML = '';
+                    if (welcome) welcome.style.display = 'flex';
+                    
+                    historyItems.forEach(function(h) {
+                        h.classList.remove('active');
+                    });
+                    
+                    const userInput = document.getElementById('userInput');
+                    if (userInput) userInput.focus();
+                });
+            }
+            
+            try {
+                const saved = localStorage.getItem('sidebarCollapsed');
+                if (saved === 'true' && sidebar) {
+                    sidebar.classList.add('collapsed');
+                }
+            } catch(e) {}
+            
+            document.addEventListener('keydown', function(e) {
+                if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                    e.preventDefault();
+                    if (newChatBtn) newChatBtn.click();
+                }
+            });
+            
+            console.log('Sidebar initialized!');
+        })();
+        
+        // CHAT FUNCTIONALITY
+
+        const messagesContainer = document.getElementById('messages');
+        const chatMessages = document.getElementById('chatMessages');
+        const userInput = document.getElementById('userInput');
+        const sendBtn = document.getElementById('sendBtn');
+        const typingIndicator = document.getElementById('typing');
+        const welcomeScreen = document.getElementById('welcome');
+
+        function getTimestamp() {
+            const now = new Date();
+            return now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        }
+
+        function addMessage(message, isUser = false) {
+            if (welcomeScreen) welcomeScreen.style.display = 'none';
+            
+            const div = document.createElement('div');
+            div.className = `message ${isUser ? 'user' : ''}`;
+            
+            const avatar = isUser ? '' : '';
+            
+            div.innerHTML = `
+                <div class="message-avatar">${avatar}</div>
+                <div class="message-bubble">
+                    ${message}
+                    <span class="message-time">${getTimestamp()}</span>
+                </div>
+            `;
+            
+            if (chatMessages) {
+                chatMessages.appendChild(div);
+                if (messagesContainer) messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }
+        }
+
+        function showTyping() {
+            if (typingIndicator) {
+                typingIndicator.style.display = 'flex';
+                if (messagesContainer) messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }
+        }
+
+        function hideTyping() {
+            if (typingIndicator) {
+                typingIndicator.style.display = 'none';
+            }
+        }
+
+        async function sendMessage() {
+            if (!userInput) return;
+            
+            const message = userInput.value.trim();
+            if (!message) return;
+
+            userInput.disabled = true;
+            if (sendBtn) sendBtn.disabled = true;
+
+            addMessage(message, true);
+            userInput.value = '';
+            showTyping();
+
+            try {
+                const response = await fetch('/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                hideTyping();
+                addMessage(data.response);
+            } catch (error) {
+                hideTyping();
+                addMessage('Sorry, I\'m having trouble connecting. Please try again.');
+                console.error('Error:', error);
+            } finally {
+                userInput.disabled = false;
+                if (sendBtn) sendBtn.disabled = false;
+                userInput.focus();
+            }
+        }
+
+        function clearChat() {
+            if (chatMessages) chatMessages.innerHTML = '';
+            if (welcomeScreen) welcomeScreen.style.display = 'flex';
+        }
+
+        if (sendBtn) {
+            sendBtn.addEventListener('click', sendMessage);
+        }
+
+        if (userInput) {
+            userInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    sendMessage();
+                }
+            });
+        }
+
+        document.querySelectorAll('.quick-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (userInput) {
+                    userInput.value = btn.getAttribute('data-msg');
+                    sendMessage();
+                }
+            });
+        });
+
+        if (userInput) {
+            userInput.focus();
+        }
+
+        console.log('Chat functionality loaded!');
+    </script>
+</body>
+</html>

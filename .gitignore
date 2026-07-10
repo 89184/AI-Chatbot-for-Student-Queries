@@ -1,0 +1,178 @@
+# PYTHON
+
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.dll
+*.dylib
+*.egg
+*.egg-info/
+dist/
+build/
+develop-eggs/
+downloads/
+eggs/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.manifest
+*.spec
+
+# VIRTUAL ENVIRONMENT
+
+venv/
+env/
+ENV/
+.venv/
+.env/
+env.bak/
+venv.bak/
+
+# MODEL FILES (generated)
+
+backend/model.h5
+backend/model.keras
+backend/words.pkl
+backend/classes.pkl
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+*.pb
+*.onnx
+
+# IDE
+
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.user
+*.vscode/
+
+# OS
+
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+*.tmp
+
+# LOGS
+
+*.log
+logs/
+*.log.*
+
+# DATA FILES
+
+data/raw/*.csv
+data/interim/*.csv
+!data/raw/.gitkeep
+!data/interim/.gitkeep
+*.csv
+*.xlsx
+*.xls
+
+# OUTPUTS
+
+outputs/figures/*.png
+!outputs/figures/.gitkeep
+outputs/reports/*.csv
+!outputs/reports/.gitkeep
+*.png
+*.jpg
+*.jpeg
+*.gif
+
+# POWER BI
+
+powerbi/*.csv
+!powerbi/.gitkeep
+
+# JUPYTER
+
+.ipynb_checkpoints/
+*.ipynb
+*/.ipynb_checkpoints/
+*.pyc
+
+# DOCKER
+
+*.tar
+*.tar.gz
+*.dockerignore
+docker-compose.override.yml
+
+# ENVIRONMENT
+.env
+.env.local
+.env.*.local
+*.env
+
+# TESTING
+
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+*.coverage
+
+# MISCELLANEOUS
+
+*.zip
+*.rar
+*.7z
+*.bak
+*.backup
+*.orig
+*.old
+*.temp
+*.tmp
+*.cache
+*.lock
+package-lock.json
+yarn.lock
+
+# NLTK DATA
+
+nltk_data/
+*.nltk
+
+# STREAMLIT
+
+.streamlit/secrets.toml
+.streamlit/config.toml
+
+# FLASK
+
+instance/
+.webassets-cache
+*.db
+*.sqlite
+*.sqlite3
+
+# CELERY
+
+celerybeat-schedule
+celerybeat.pid
+
+# SAMBA
+
+*.samba

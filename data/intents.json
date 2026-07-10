@@ -1,0 +1,120 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "hello",
+        "hey",
+        "hi",
+        "good day",
+        "what's up",
+        "how are you"
+      ],
+      "responses": [
+        "Hello! How can I help you?",
+        "Hey there! Ask me anything about the college.",
+        "Hi! I'm here to help you with college queries."
+      ]
+    },
+    {
+      "tag": "courses",
+      "patterns": [
+        "what courses are available",
+        "tell me about courses",
+        "which courses do you offer",
+        "course list",
+        "programs offered"
+      ],
+      "responses": [
+        "We offer B.Tech in CSE, IT, ECE, and M.Tech programs. For detailed information, visit our website.",
+        "Our courses include Engineering, Management, and Arts. Check our academic section for details."
+      ]
+    },
+    {
+      "tag": "admission",
+      "patterns": [
+        "admission process",
+        "how to apply",
+        "admission requirements",
+        "application form",
+        "admission date"
+      ],
+      "responses": [
+        "Admission is based on entrance exam scores and academic performance. Visit our admission portal for details.",
+        "Applications are open from January to March. Apply online through our admission portal."
+      ]
+    },
+    {
+      "tag": "fees",
+      "patterns": [
+        "fee structure",
+        "tuition fees",
+        "how much does it cost",
+        "fees payment",
+        "scholarship"
+      ],
+      "responses": [
+        "The annual fee for B.Tech is \u20b91,50,000. Scholarships are available for meritorious students.",
+        "Fee structure varies by course. Contact the finance department for exact details."
+      ]
+    },
+    {
+      "tag": "facilities",
+      "patterns": [
+        "facilities",
+        "infrastructure",
+        "campus facilities",
+        "library",
+        "hostel",
+        "sports"
+      ],
+      "responses": [
+        "We have a library, sports complex, hostel, cafeteria, and 24/7 internet connectivity.",
+        "Campus includes modern labs, sports facilities, and comfortable hostels."
+      ]
+    },
+    {
+      "tag": "contact",
+      "patterns": [
+        "contact",
+        "phone number",
+        "email",
+        "address",
+        "reach out"
+      ],
+      "responses": [
+        "Email: info@college.edu, Phone: +91-XXXXXXXXXX, Address: College Road, City.",
+        "You can reach us at +91-XXXXXXXXXX or visit our campus during office hours."
+      ]
+    },
+    {
+      "tag": "placement",
+      "patterns": [
+        "placement",
+        "job opportunities",
+        "campus placement",
+        "recruitment",
+        "companies"
+      ],
+      "responses": [
+        "Our placement cell has a 90% placement record with top companies like Google, Amazon, and Microsoft.",
+        "Campus placements are conducted annually with 50+ companies participating."
+      ]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": [
+        "bye",
+        "goodbye",
+        "see you",
+        "thanks",
+        "thank you"
+      ],
+      "responses": [
+        "Goodbye! Have a great day!",
+        "Thanks for chatting! Come back if you need help.",
+        "Take care! We're always here to help."
+      ]
+    }
+  ]
+}
